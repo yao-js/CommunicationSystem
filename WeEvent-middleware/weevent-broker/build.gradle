@@ -1,0 +1,80 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+//apply plugin: "com.gorylenko.gradle-git-properties"
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    // spring boot
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.data:spring-data-commons:${springBootVersion}")
+
+    // spring boot with log4j2
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    // avoid "Log4j appears to be running in a Servlet environment, but there's no log4j-web module available."
+    implementation("org.apache.logging.log4j:log4j-web:${log4jVersion}")
+
+    // restful and json rpc support http base authorization
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // stomp
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+    // json rpc, https://mvnrepository.com/artifact/com.github.briandilley.jsonrpc4j/jsonrpc4j
+    implementation("com.github.briandilley.jsonrpc4j:jsonrpc4j:${jsonrpc4jVersion}")
+
+    // discovery
+    implementation("org.springframework.cloud:spring-cloud-starter-zookeeper-discovery") {
+        exclude group: "commons-logging", module: "commons-logging"
+    }
+
+    // web3sdk for FISCO-BCOS 2.0
+    implementation("org.fisco-bcos:web3sdk:${web3sdkVersion.fisco}") {
+        // io.netty:netty-tcnative-boringssl-static:2.0.20.Final crash
+        exclude group: "io.netty"
+        // compile solidity
+        exclude group: "org.ethereum", module: "solcJ-all"
+    }
+
+    // depend project
+    api project(":weevent-core")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    // mqtt
+    testImplementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:${PahoClientVersion}")
+}
+
+//gitProperties {
+//    dateFormat = "yyyy-MM-dd HH:mm:ss"
+//    dateFormatTimeZone = "GMT+8"
+//    gitPropertiesDir = "${project.rootDir}/weevent-broker/src/main/resources"
+//}
+
+bootJar {
+    destinationDir file("dist/apps")
+    archiveName project.name + "-" + version + ".jar"
+    // thin spring boot jar
+    excludes = ["*.jar"]
+
+    manifest {
+        attributes 'Start-Class': 'com.webank.weevent.broker.BrokerApplication'
+    }
+
+    doLast {
+        copy {
+            from file("src/main/resources/")
+            into "dist/conf"
+        }
+        copy {
+            from configurations.runtimeClasspath
+            into "dist/lib"
+        }
+    }
+}
+
+//bootJar.dependsOn(generateGitProperties)

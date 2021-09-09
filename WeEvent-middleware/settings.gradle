@@ -1,0 +1,5 @@
+rootProject.name = 'WeEvent-middleware'
+include 'weevent-core'
+include 'weevent-broker'
+include 'weevent-client'
+

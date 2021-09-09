@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="weEvent-jar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/weEvent-jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/weEvent-jar" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/weEvent-jar" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/weEvent-jar" recursive="false" type="SOURCES" />
+  </library>
+</component>

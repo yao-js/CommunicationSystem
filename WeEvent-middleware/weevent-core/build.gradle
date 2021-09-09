@@ -1,0 +1,67 @@
+apply plugin: "io.spring.dependency-management"
+apply plugin: "signing"
+
+dependencies {
+    // web3sdk for FISCO-BCOS 2.0
+    implementation("org.fisco-bcos:web3sdk:${web3sdkVersion.fisco}") {
+        // io.netty:netty-tcnative-boringssl-static:2.0.20.Final crash
+        exclude group: "io.netty"
+        // compile solidity
+        exclude group: "org.ethereum", module: "solcJ-all"
+    }
+
+    // fabric 1.4.4
+    implementation("org.hyperledger.fabric-sdk-java:fabric-sdk-java:${fabricVersion}")
+
+    // depend project
+    api project(":weevent-client")
+
+    // log for test
+    testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}")
+
+    //test for project
+    testImplementation 'org.junit.platform:junit-platform-commons:1.5.2'
+
+}
+test {
+    useJUnitPlatform()
+}
+jar {
+    destinationDir file("dist/apps")
+    archiveName project.name + "-" + version + ".jar"
+
+    exclude "**/*.xml"
+    exclude "**/*.properties"
+
+    doLast {
+        copy {
+            from file("src/main/resources/")
+            into "dist/conf"
+        }
+        copy {
+            from configurations.runtime
+            into "dist/lib"
+        }
+        copy {
+            from file("build/libs/")
+            into "dist/apps"
+        }
+    }
+}
+
+// for upload to maven
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="WeEvent-middleware.weevent-client.main" />
+        <module name="WeEvent-middleware.weevent-broker.main" />
+        <module name="WeEvent-middleware.main" />
+        <module name="WeEvent-middleware.weevent-client.test" />
+        <module name="WeEvent-middleware.weevent-core.main" />
+        <module name="WeEvent-middleware.test" />
+        <module name="WeEvent-middleware.weevent-broker.test" />
+        <module name="WeEvent-middleware.weevent-core.test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WeEvent-middleware.broker" target="1.8" />
+      <module name="WeEvent-middleware.broker.main" target="1.8" />
+      <module name="WeEvent-middleware.broker.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

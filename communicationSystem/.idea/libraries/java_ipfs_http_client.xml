@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-ipfs-http-client">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/IPFS-jar/java-ipfs-http-client.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,58 @@
+apply plugin: "io.spring.dependency-management"
+apply plugin: "signing"
+
+dependencies {
+    // stomp, see https://github.com/TooTallNate/Java-WebSocket
+    implementation("org.java-websocket:Java-WebSocket:${WebSocketVersion}")
+    implementation("org.springframework.data:spring-data-commons:${springBootVersion}")
+    implementation("org.springframework:spring-messaging:${springVersion}")
+
+    // httpclient
+    implementation("org.apache.httpcomponents:httpclient:${httpclientVersion}")
+
+    // httpmime
+    implementation("org.apache.httpcomponents:httpmime:${httpclientVersion}")
+
+    // event-client.log for test
+    testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}")
+}
+
+jar {
+    destinationDir file("dist/apps")
+    archiveName project.name + "-" + version + ".jar"
+
+    exclude "**/*.xml"
+    exclude "**/*.properties"
+
+    doLast {
+        copy {
+            from file("src/main/resources/")
+            into "dist/conf"
+        }
+        copy {
+            from configurations.runtime
+            into "dist/lib"
+        }
+        copy {
+            from file("build/libs/")
+            into "dist/apps"
+        }
+    }
+}
+
+// for upload to maven
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}

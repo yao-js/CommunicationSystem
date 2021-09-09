@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="CPABE-jar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/CPABE-jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/CPABE-jar" recursive="false" />
+  </library>
+</component>
