@@ -254,6 +254,9 @@ public class Bswabe {
 
 		keyCph.cph = cph;
 		keyCph.key = m;
+		for (BswabePolicy child : keyCph.cph.p.children) {
+			System.out.println(child.attr);
+		}
 
 		return keyCph;
 	}

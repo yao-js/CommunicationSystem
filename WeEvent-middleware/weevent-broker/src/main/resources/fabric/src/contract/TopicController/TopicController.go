@@ -166,6 +166,55 @@ func (t *TopicController) listTopicName(stub shim.ChaincodeStubInterface,args[] 
     return shim.Success([]byte(listTopicNameJSON))
 }
 
+func (s *SmartContract) queryBySort(stub shim.ChaincodeStubInterface, args []string) (res peer.Response) {
+
+    testTime := time.Now()
+    if len(args) != 2 {
+        res = shim.Error("invalid arguments, [requireCount][spNo] expected")
+        return
+    }
+    // 需要将requireCount string字段转化为uint类型
+    rc, spNo := args[0], args[1]
+    requireCount, err := strconv.ParseUint(rc, 10, 64)
+    if err != nil {
+        return shim.Error("error by converting string to uint")
+    }
+
+    var count int
+
+    // 读db（根据索引来查询）
+    queryString := fmt.Sprintf("{\"selector\":{\"OrderStatus\":1, \"SpNo\":\"%s\"}, \"limit\": %d, \"sort\":[{\"ApplyTime\": \"asc\"}]}", spNo, requireCount)
+
+    resultsIterator, err := stub.GetQueryResult(queryString)
+
+    if resultsIterator == nil {
+        msg := "resultsIterator is nil"
+        return shim.Error(msg)
+    }
+    testTimeElapsed := time.Since(testTime)
+
+    for {
+        if !resultsIterator.HasNext() {
+            break
+        }
+        _, err := resultsIterator.Next()
+        if err != nil {
+            checkError(err)
+        }
+        count++
+    }
+
+    defer resultsIterator.Close()
+
+    if err != nil {
+        msg := err.Error()
+        return shim.Error(msg)
+    }
+
+    msg := "Success and test time: " + testTimeElapsed.String() + " and total counts: " + string(count)
+    return shim.Success([]byte(msg))
+}
+
 func main(){
     err := shim.Start(new(TopicController))
     if err != nil{

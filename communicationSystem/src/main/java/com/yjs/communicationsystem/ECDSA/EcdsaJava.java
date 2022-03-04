@@ -42,8 +42,11 @@ public class EcdsaJava {
         ECPrivateKey ePriv = (ECPrivateKey) priv;
         PublicKey pub = pair.getPublic();
 
-        spitFile("deviceOwnerEcdsaKey/ecdsa_priv", priv.getEncoded());
-        spitFile("deviceOwnerEcdsaKey/ecdsa_pub", pub.getEncoded());
+        System.out.println(((ECPrivateKey) priv).getS());
+        System.out.println();
+
+//        spitFile("deviceOwnerEcdsaKey/ecdsa_priv", priv.getEncoded());
+//        spitFile("deviceOwnerEcdsaKey/ecdsa_pub", pub.getEncoded());
 
 
 //        //https://stackoverflow.com/questions/5355466/converting-secret-key-into-a-string-and-vice-versa

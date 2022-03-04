@@ -1,5 +1,9 @@
 println("Notice: current gradle version is " + gradle.gradleVersion)
 
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+
 ext {
     // spring
     springVersion = "5.1.15.RELEASE"
@@ -183,6 +187,17 @@ allprojects {
         implementation("org.apache.commons:commons-lang3:${apacheCommonsVersion.lang3}")
         implementation("org.apache.commons:commons-collections4:${apacheCommonsVersion.collections4}")
 
+        // spring boot with log4j2
+        implementation("org.springframework.boot:spring-boot-starter-log4j2")
+
+        // spring boot websocket
+        implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.data:spring-data-commons:${springBootVersion}")
+
+        implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+//        implementation 'org.projectlombok:lombok:1.18.18'
         // jackson
         implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
         implementation("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
@@ -195,6 +210,12 @@ allprojects {
         testImplementation("junit:junit:${junitVersion}")
         testCompileOnly(lombok)
         testAnnotationProcessor(lombok)
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 

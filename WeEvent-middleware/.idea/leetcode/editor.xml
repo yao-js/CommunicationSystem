@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[46]全排列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/doc/content/[46]全排列.md" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[46]全排列.java" />
+              <option name="questionId" value="46" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[47]全排列 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/doc/content/[47]全排列 II.md" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[47]全排列 II.java" />
+              <option name="questionId" value="47" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[51]N 皇后.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/doc/content/[51]N 皇后.md" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[51]N 皇后.java" />
+              <option name="questionId" value="51" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[52]N皇后 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/doc/content/[52]N皇后 II.md" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[52]N皇后 II.java" />
+              <option name="questionId" value="52" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[698]划分为k个相等的子集.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/doc/content/[698]划分为k个相等的子集.md" />
+              <option name="path" value="$PROJECT_DIR$/../../../Leetcode/leetcode/editor/cn/[698]划分为k个相等的子集.java" />
+              <option name="questionId" value="698" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 /**
  * WeEvent Build Info that auto loaded by spring ApplicationContext
  *
@@ -31,4 +33,8 @@ public class BuildInfo {
 
     @Value("${git.commit.id.abbrev:}")
     private String gitCommitHash;
+
+
+
+
 }

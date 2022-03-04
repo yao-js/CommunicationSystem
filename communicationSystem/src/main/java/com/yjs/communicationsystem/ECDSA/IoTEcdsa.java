@@ -1,14 +1,13 @@
 package com.yjs.communicationsystem.ECDSA;
 
-import com.yjs.communicationsystem.cpabeApi.ellipticcurve.Ecdsa;
-import com.yjs.communicationsystem.cpabeApi.ellipticcurve.PrivateKey;
-import com.yjs.communicationsystem.cpabeApi.ellipticcurve.PublicKey;
-import com.yjs.communicationsystem.cpabeApi.ellipticcurve.Signature;
+import com.yjs.communicationsystem.ellipticcurve.Ecdsa;
+import com.yjs.communicationsystem.ellipticcurve.PrivateKey;
+import com.yjs.communicationsystem.ellipticcurve.PublicKey;
+import com.yjs.communicationsystem.ellipticcurve.Signature;
 
 import java.io.*;
 import java.math.BigInteger;
 
-import static com.yjs.communicationsystem.ECDSA.EcdsaJava.*;
 
 public class IoTEcdsa {
 
@@ -128,17 +127,17 @@ public class IoTEcdsa {
 
     }
 
-    public static String[] signaturePro(String DeviceCertFile) throws Exception {
-        byte[] priv = suckFile("deviceOwnerEcdsaKey/ecdsa_priv");
-        java.security.PrivateKey pri = bytesToPrivateKey(priv);
-        String priStringHex = getPrivateKeyAsHex(pri);
-        //将设备证书文件转化为字节数组类型
-        byte[] dvCert = suckFile(DeviceCertFile);
-        String deviceCert = new String(dvCert);
-        String[] res = signMsg(deviceCert, pri);
-        String[] deviceSignCert = {priStringHex, deviceCert, res[0], res[1]};
-        return deviceSignCert;
-    }
+//    public static String[] signaturePro(String DeviceCertFile) throws Exception {
+//        byte[] priv = suckFile("deviceOwnerEcdsaKey/ecdsa_priv");
+//        java.security.PrivateKey pri = bytesToPrivateKey(priv);
+//        String priStringHex = getPrivateKeyAsHex(pri);
+//        //将设备证书文件转化为字节数组类型
+//        byte[] dvCert = suckFile(DeviceCertFile);
+//        String deviceCert = new String(dvCert);
+//        String[] res = signMsg(deviceCert, pri);
+//        String[] deviceSignCert = {priStringHex, deviceCert, res[0], res[1]};
+//        return deviceSignCert;
+//    }
 
     public static boolean verify(String DevicePublicKey, String rSignMessage, String sSignMessage, String DeviceOwnerPublicKey){
 

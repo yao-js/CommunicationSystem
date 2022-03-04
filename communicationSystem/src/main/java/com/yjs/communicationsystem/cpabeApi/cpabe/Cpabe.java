@@ -66,7 +66,7 @@ public class Cpabe {
 		pub_byte = Common.suckFile(pubfile);
 		pub = SerializeUtils.unserializeBswabePub(pub_byte);//利用group owner的public key
 
-		keyCph = Bswabe.enc(pub, policy);//利用group owner的public key和policy（我认为是属性集合）来生成加密密钥。
+		keyCph = Bswabe.enc(pub, policy);//利用group owner的public key和policy（我认为是属性集合）来生成加密AES密钥。
 		cph = keyCph.cph;
 		m = keyCph.key;
 		System.err.println("m = " + m.toString());
@@ -82,7 +82,7 @@ public class Cpabe {
 		plt = Common.suckFile(inputfile);
 		aesBuf = AESCoder.encrypt(m.toBytes(), plt);
 		// PrintArr("element: ", m.toBytes());
-		byte[][] tmp = {aesBuf, cphBuf};
+		byte[][] tmp = {aesBuf, cphBuf}; // aesBuf是Encrypted Message，cphBuf是Encrypted AES Key
 		return tmp;
 	}
 
@@ -153,6 +153,18 @@ public class Cpabe {
 			System.exit(0);
 		}
 		return null;
+	}
+
+	public static void main(String[] args) throws Exception {
+		String pubParameterFile = "./cpabeKey/cpabePublicParameter/publicParameter";
+		String masterKeyFile = "./cpabeKey/cpabePrivateKey/masterKey";
+		String policy = "sn:student2 cn:student2 uid:student2 3of3";
+		byte[][] abc = enc(pubParameterFile, policy, "./mess/test");
+		byte[] cphBuf = abc[1];
+		byte[] pub_byte = Common.suckFile(pubParameterFile);
+		BswabePub pub = SerializeUtils.unserializeBswabePub(pub_byte);
+		BswabeCph cph = SerializeUtils.bswabeCphUnserialize(pub, cphBuf);
+
 	}
 
 }
