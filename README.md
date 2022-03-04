@@ -14,3 +14,4 @@
 
 ## Related Efforts
 - [WeEvent] (https://github.com/WeBankBlockchain/WeEvent) \-通信中间件的底层系统
+- [Battleship Game Demo](https://liangyihuai.blog.csdn.net/article/details/116459829) \- 本系统是基于Battleship Game开源项目继续完善的。
